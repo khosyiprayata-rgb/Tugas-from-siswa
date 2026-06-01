@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Detail Siswa
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-white rounded-2xl shadow p-8">
+
+```
+<h1 class="text-3xl font-bold text-slate-800 mb-2">
+    Detail Siswa
+</h1>
+
+<p class="text-gray-500 mb-8">
+    Informasi lengkap data siswa
+</p>
+
+<div class="grid gap-4">
+
+    <div class="p-4 rounded-xl bg-slate-50 border">
+        <p class="text-sm text-gray-500">Nama</p>
+        <h2 class="text-xl font-semibold">
+            {{ siswa.nama }}
+        </h2>
+    </div>
+
+    <div class="p-4 rounded-xl bg-slate-50 border">
+        <p class="text-sm text-gray-500">Umur</p>
+        <h2 class="text-xl font-semibold">
+            {{ siswa.umur }} Tahun
+        </h2>
+    </div>
+
+    <div class="p-4 rounded-xl bg-slate-50 border">
+        <p class="text-sm text-gray-500">Tanggal Lahir</p>
+        <h2 class="text-xl font-semibold">
+            {{ siswa.tgl_lahir }}
+        </h2>
+    </div>
+
+    <div class="p-4 rounded-xl bg-slate-50 border">
+        <p class="text-sm text-gray-500">Status Hadir</p>
+
+        {% if siswa.status_hadir %}
+            <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
+                Hadir
+            </span>
+        {% else %}
+            <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
+                Tidak Hadir
+            </span>
+        {% endif %}
+    </div>
+
+    <div class="p-4 rounded-xl bg-slate-50 border">
+        <p class="text-sm text-gray-500">Nilai Akhir</p>
+        <h2 class="text-xl font-bold text-blue-600">
+            {{ siswa.nilai_akhir }}
+        </h2>
+    </div>
+
+</div>
+
+<div class="mt-8 flex gap-3">
+
+    <a
+        href="{% url 'siswa_list' %}"
+        class="px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300"
+    >
+        Kembali
+    </a>
+
+    <a
+        href="{% url 'siswa_update' siswa.id %}"
+        class="px-5 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-white"
+    >
+        Edit
+    </a>
+
+    <a
+        href="{% url 'siswa_delete' siswa.id %}"
+        class="px-5 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white"
+    >
+        Hapus
+    </a>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

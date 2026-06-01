@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Siswa
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-white rounded-2xl shadow p-8">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Edit Data Siswa
+    </h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label>Nama</label>
+            <input
+                type="text"
+                name="nama"
+                value="{{ siswa.nama }}"
+                class="w-full border rounded p-2"
+            >
+        </div>
+
+        <div class="mb-4">
+            <label>Umur</label>
+            <input
+                type="number"
+                name="umur"
+                value="{{ siswa.umur }}"
+                class="w-full border rounded p-2"
+            >
+        </div>
+
+        <div class="mb-4">
+            <label>Tanggal Lahir</label>
+            <input
+                type="date"
+                name="tgl_lahir"
+                value="{{ siswa.tgl_lahir|date:'Y-m-d' }}"
+                class="w-full border rounded p-2"
+            >
+        </div>
+
+        <div class="mb-4">
+            <label>Status Hadir</label>
+
+            <select
+                name="status_hadir"
+                class="w-full border rounded p-2"
+            >
+                <option value="True"
+                    {% if siswa.status_hadir %}
+                    selected
+                    {% endif %}
+                >
+                    Hadir
+                </option>
+
+                <option value="False"
+                    {% if not siswa.status_hadir %}
+                    selected
+                    {% endif %}
+                >
+                    Tidak Hadir
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label>Nilai Akhir</label>
+            <input
+                type="number"
+                name="nilai_akhir"
+                value="{{ siswa.nilai_akhir }}"
+                class="w-full border rounded p-2"
+            >
+        </div>
+
+        <div class="flex gap-3 mt-6">
+
+            <button
+                type="submit"
+                class="px-5 py-2 bg-blue-600 text-white rounded"
+            >
+                Simpan
+            </button>
+
+            <a
+                href="{% url 'siswa_list' %}"
+                class="px-5 py-2 bg-gray-300 rounded"
+            >
+                Batal
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
